@@ -10,26 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_13_030916) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_13_223919) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "hstore"
   enable_extension "plpgsql"
 
   create_table "dogs", force: :cascade do |t|
     t.string "name"
     t.string "url"
-    t.string "breed"
     t.string "gender"
     t.string "size"
     t.string "coat"
-    t.string "tags"
-    t.string "description"
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "organization_id"
-    t.string "color"
-    t.string "attributes"
-    t.string "environment"
-    t.string "photos"
+    t.hstore "breeds", default: {}, null: false
+    t.hstore "colors", default: {}, null: false
+    t.hstore "environments", default: {}, null: false
+    t.hstore "features", default: {}, null: false
+    t.hstore "pictures", default: {}, null: false
+    t.text "qualities", default: [], array: true
     t.index ["organization_id"], name: "index_dogs_on_organization_id"
   end
 

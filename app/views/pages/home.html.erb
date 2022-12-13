@@ -1,1 +1,17 @@
 <h1>Find your furry companion!</h1>
+
+<% @dogs.each do |dog| %>
+  <h2><%= dog.name %></h2>
+  <p><%= dog.description %></p>
+  <p><%= dog.breed.each %></p>
+  <p><%= dog.gender %></p>
+  <p><%= dog.size %></p>
+  <% dog.tags.slice(1..-2).split(",").each do |tag| %>
+    <p><%= tag.gsub!('"', '') %></p>
+  <% end %>
+  <p><%= dog.color %></p>
+  <p><%= dog.distinctions.slice(1..-2).split(",") %></p>
+  <p><%= dog.environment %></p>
+  <p><%= dog.photos %></p>
+  <a href="<%= dog.url %>" target="_blank">More info</a>
+<% end %>
