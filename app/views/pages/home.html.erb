@@ -5,13 +5,14 @@
   </div>
 </div>
 <div class="cards container">
+  <h2 id="title">Adoptable senior dogs near you!</h2><br>
   <% @dogs.each do |dog| %>
-
     <div class="card-trip">
-      <%= image_tag dog.pictures['medium'] %>
+      <%= image_tag dog.pictures['medium'], class: 'card-image' %>
       <div class="card-trip-infos">
+      <p class="card-plus">+</p>
 
-        <h2><%= dog.name.gsub(/&#39;/,'`') %></h2>
+        <h3><%= dog.name.gsub(/&#39;/,'`') %></h3>
         <% if dog.breeds['secondary'].nil? || dog.breeds['secondary'] == 'Mixed Breed' %>
           <p><%= dog.breeds['primary'] %></p>
         <% else %>
@@ -20,61 +21,7 @@
 
         <p><%= dog.gender %> - <%= dog.size %></p>
 
-        <% if dog.coat.present? %>
-          <p>Coat: <%= dog.coat %></p>
-        <% end %>
-
-        <% if dog.colors['secondary'].nil? && dog.colors.present? %>
-          <p>Color: <%= dog.colors['primary'] %></p>
-        <% elsif dog.colors.present? %>
-          <p>Color: <%= dog.colors['primary'] %> & <%= dog.colors['secondary'] %></p>
-        <% end %>
-
-        <p><% dog.qualities.each do |q| %>
-          <%= q %>
-        <% end %></p>
-
-        <a href="<%= dog.url %>" target="_blank">More information</a>
-
-        <p>Spayed/Neutered?
-        <% if dog.features['spayed_neutered'] == true %> Yes
-        <% else %> No</p>
-        <% end %>
-
-        <p>House trained?
-        <% if dog.features['house_trained'] == true %> Yes
-        <% else %> No</p>
-        <% end %>
-
-        <p>Declawed?
-        <% if dog.features['declawed'] == true %> Yes
-        <% else %> No</p>
-        <% end %>
-
-        <p>Special needs?
-        <% if dog.features['special_needs'] == true %> Yes
-        <% else %> No</p>
-        <% end %>
-
-        <p>Shots up-to-date?
-        <% if dog.features['shots_current'] == true %> Yes
-        <% else %> No</p>
-        <% end %>
-
-        <p>Good with children?
-        <% if dog.environments['children'] == true %> Yes
-        <% else %> No</p>
-        <% end %>
-
-        <p>Good with other dogs?
-        <% if dog.environments['dogs'] == true %> Yes
-        <% else %> No</p>
-        <% end %>
-
-        <p>Good with cats?
-        <% if dog.environments['cats'] == true %> Yes
-        <% else %> No</p>
-        <% end %>
+        <a class="card-button" href="<%= dog.url %>" target="_blank">More information</a>
       </div>
     </div>
   <% end %>
