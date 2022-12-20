@@ -9,7 +9,8 @@ class PagesController < ApplicationController
       {
         lat: dog.latitude,
         lng: dog.longitude,
-        info_window: render_to_string(partial: "info_window", locals: { dog: })
+        info_window: render_to_string(partial: "info_window", locals: { dog: }),
+        image_url: helpers.asset_url("pin.png")
       }
     end
   end
