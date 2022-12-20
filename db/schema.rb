@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_13_225000) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_20_020429) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
   enable_extension "plpgsql"
@@ -31,6 +31,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_13_225000) do
     t.hstore "features", default: {}, null: false
     t.hstore "pictures", default: {}, null: false
     t.text "qualities", default: [], array: true
+    t.string "address"
     t.index ["breeds"], name: "dogs_breeds_idx", using: :gin
     t.index ["colors"], name: "dogs_colors_idx", using: :gin
     t.index ["environments"], name: "dogs_environments_idx", using: :gin
