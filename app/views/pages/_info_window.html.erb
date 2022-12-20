@@ -1,0 +1,13 @@
+<h3><%= dog.name.gsub(/&#39;/,'`') %></h3>
+
+<% if dog.breeds['secondary'].nil? || dog.breeds['secondary'] == 'Mixed Breed' %>
+  <p><%= dog.breeds['primary'] %></p>
+<% else %>
+  <p><%= dog.breeds['primary'] %> x <%= dog.breeds['secondary'] %></p>
+<% end %>
+
+<p><%= dog.gender %> - <%= dog.size %></p>
+
+<div>
+  <%= link_to "More info", dog.url %>
+</div>

@@ -6,6 +6,9 @@
 </div>
 <div class="cards container">
   <h2 id="title">Adoptable senior dogs near you!</h2><br>
+
+  <%= render "shared/map" %>
+
   <% @dogs.each do |dog| %>
     <div class="card-trip">
       <%= image_tag dog.pictures['medium'], class: 'card-image' %>
@@ -26,3 +29,4 @@
     </div>
   <% end %>
 </div>
+<p>Powered by Petfinder</p>
