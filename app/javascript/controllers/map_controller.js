@@ -1,10 +1,11 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
   static values = {
     apiKey: String,
     markers: Array
   }
+  static targets = ["button"]
 
   mapMarkers = []
 
@@ -12,15 +13,14 @@ export default class extends Controller {
     mapboxgl.accessToken = this.apiKeyValue
 
     this.map = new mapboxgl.Map({
-      container: this.element,
-      style: "mapbox://styles/mapbox/streets-v12"
-    })
-
+    container: this.element,
+    style: "mapbox://styles/mapbox/streets-v12"
+    });
     this.#addMarkersToMap(this.markersValue)
     this.#fitMapToMarkers(this.markersValue)
   }
 
-  #addMarkersToMap() {
+  #addMarkersToMap(markers) {
     this.#clearMarkers()
     this.mapMarkers = markers.map((marker) => {
       const popup = new mapboxgl.Popup().setHTML(marker.info_window)
@@ -37,27 +37,27 @@ export default class extends Controller {
       return new mapboxgl.Marker(customMarker)
         .setLngLat([marker.lng, marker.lat])
         .setPopup(popup)
-    })
-    this.#refreshMarkers()
-  }
-
-  #fitMapToMarkers() {
-    const bounds = new mapboxgl.LngLatBounds()
-    markers.forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
-    this.map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 })
+      })
+      this.#refreshMarkers()
   }
 
   #refreshMarkers() {
     this.mapMarkers.forEach(mapMarker => mapMarker.addTo(this.map))
   }
 
-  #clearMarkers() {
-    this.mapMarkers.forEach(mapMarker => mapMarker.remove())
+  #fitMapToMarkers(markers) {
+    const bounds = new mapboxgl.LngLatBounds()
+    markers.forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
+    this.map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 })
   }
 
   refresh(event) {
     event.preventDefault()
-    const filteredMarkers = this.markersValue.filter(marker => marker.id === dog.id)
+    const filteredMarkers = this.markersValue.filter(marker => marker.id)
     this.#addMarkersToMap(filteredMarkers)
+  }
+
+  #clearMarkers() {
+    this.mapMarkers.forEach(mapMarker => mapMarker.remove())
   }
 }

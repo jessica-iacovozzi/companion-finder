@@ -29,7 +29,7 @@ gem "jbuilder"
 
 # Gemfile
 gem "pundit"
-
+gem "pg_search"
 gem 'rest-client'
 
 # Use Redis adapter to run Action Cable in production

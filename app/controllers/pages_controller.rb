@@ -3,8 +3,15 @@ class PagesController < ApplicationController
 
   def home
     # DogCreator.call
-    @dogs = Dog.all
+    if params[:query].present?
+      @dogs = Dog.search_by_address(params[:query])
+    else
+      @dogs = Dog.all
+    end
+    markers
+  end
 
+  def markers
     @markers = @dogs.geocoded.map do |dog|
       {
         id: dog.id,
