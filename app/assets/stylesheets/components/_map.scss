@@ -4,5 +4,56 @@
 
 .mapboxgl-popup-content {
   text-align: center;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Red Hat Display", "sans-serif";
+  font-size: 15px;
+  width: 200px;
+  height: 245px;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  border: 1px solid #d2d1d3;
+  border-radius: 10px;
+  box-shadow: 0 4px 4px #0000000d;
+  overflow: hidden;
+  position: relative;
+  p {
+    margin: 5px;
+  }
+  img {
+    width: 200px;
+    vertical-align: middle;
+    overflow: hidden;
+    height: 200px;
+    -o-object-fit: cover;
+    object-fit: cover;
+  }
+  h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 9px;
+    font-family: 'Red Hat Display', sans-serif;
+    color: #6504b5;
+  }
+}
+
+.mapboxgl-canvas {
+  border-radius: 10px;
+  border: 1px solid #d2d1d3;
+  border-radius: 10px;
+  box-shadow: 0 4px 4px #0000000d;
+}
+
+.mapboxgl-popup-close-button {
+  background-color: #6505B5;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  position: absolute;
+  color: antiquewhite;
+  font-size: 30px;
+  padding: 8px 11px;
+  top: 8px;
+  right: 8px;
 }

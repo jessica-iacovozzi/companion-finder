@@ -1,0 +1,43 @@
+form {
+  margin-bottom: 50px;
+}
+
+.form {
+  display: flex;
+  padding: 50px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-btn {
+  font-size: 17px;
+  padding: 15px;
+  background-color: #6505b5;
+  color: white;
+  border: 1px solid #d2d1d3;
+  border-radius: 10px;
+  box-shadow: 0 4px 4px #0000000d;
+  width: 125px;
+  font-family: 'Manrope', sans-serif;
+  height: 61px;
+  transition: .3s ease-in-out 0s;
+  &:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+    }
+}
+
+.form-control-search {
+  font-family: 'Manrope', sans-serif;
+  font-size: 17px;
+  border: 1px solid #d2d1d3;
+  border-radius: 10px;
+  box-shadow: 0 4px 4px #0000000d;
+  padding: 15px;
+  width: 300px;
+  color: grey;
+  background: transparent;
+  margin: 0 20px;
+  height: 61px;
+  text-align: center;
+}

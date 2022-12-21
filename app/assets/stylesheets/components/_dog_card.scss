@@ -1,11 +1,18 @@
 .card-trip {
   overflow: hidden;
   background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border: 1px solid #d2d1d3;
   border-radius: 10px;
+  box-shadow: 0 4px 4px #0000000d;
   font-family: 'Red Hat Display', sans-serif;
-  width: 200px;
+  width: 240px;
   margin-bottom: 30px;
+  transition: .3s ease-in-out 0s;
+  height: 340px;
+  &:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+  }
 }
 
 .card-trip h3 {
@@ -13,27 +20,27 @@
   font-weight: bold;
   margin-bottom: 10px;
   font-family: 'Red Hat Display', sans-serif;
+  color: #6504b5;
 }
 
 .card-trip p {
-  font-size: 12px;
+  font-size: 16px;
   opacity: .7;
   margin: 0;
   padding: 2px;
 }
 
 .card-trip .card-trip-infos {
-  padding: 16px;
+  padding-top: 16px;
   display: flex;
-  align-items: flex-start;
-  position: relative;
+  align-items: center;
   flex-direction: column;
 }
 
 .card-trip-infos .card-plus {
   font-size: 20px;
   color: white;
-  background-color: darksalmon;
+  background-color: rgba(101, 5, 181, 0.1);
   padding: 5px 10p;
   margin: 10px auto 0;
   border-radius: 50%;
@@ -69,7 +76,7 @@
 }
 
 .card-image {
-  width: 200px;
+  width: 240px;
   vertical-align: middle;
   overflow: hidden;
   height: 200px;
@@ -84,42 +91,14 @@
   margin: 10px auto 0;
   border-radius: 10px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-    &:hover {
-      color: black;
+  transition: .3s ease-in-out 0s;
+  &:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+    color: white;
   }
 }
 
-// Smallest device
-// @media (min-width: 100px) and (max-width: 575px) {
-//   .cards {
-//     grid-template-columns: 1fr;
-//   }
-// }
-
-// // Small devices (landscape phones, 576px and up)
-// @media (min-width: 576px) {
-//   .cards {
-//     grid-template-columns: 1fr 1fr;
-//   }
-// }
-
-// // Medium devices (tablets, 768px and up)
-// @media (min-width: 768px) {
-//   .cards {
-//     grid-template-columns: 1fr 1fr 1fr;
-//   }
-// }
-
-// // Large devices (desktops, 992px and up)
-// @media (min-width: 992px) {
-//   .cards {
-//     grid-template-columns: 1fr 1fr 1fr 1fr;
-//   }
-// }
-
-// // Extra large devices (large desktops, 1200px and up)
-// @media (min-width: 1200px) {
-//   .cards {
-//     grid-template-columns: 1fr 1fr 1fr 1fr;
-//   }
-// }
+p {
+  text-align: center;
+}

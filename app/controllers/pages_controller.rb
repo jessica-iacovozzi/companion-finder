@@ -2,11 +2,12 @@ class PagesController < ApplicationController
   # skip_before_action :authenticate_user!, only: [:home]
 
   def home
-    DogCreator.call
+    # DogCreator.call
     @dogs = Dog.all
 
     @markers = @dogs.geocoded.map do |dog|
       {
+        id: dog.id,
         lat: dog.latitude,
         lng: dog.longitude,
         info_window: render_to_string(partial: "info_window", locals: { dog: }),

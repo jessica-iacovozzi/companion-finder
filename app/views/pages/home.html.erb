@@ -1,32 +1,48 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://www.avma.org/sites/default/files/2022-11/avma-website-senior-pets-hero-2880x900.jpg);">
-  <div class="container">
-    <h1>Find your furry companion</h1>
-    <p>And help a dog get their happy ending.</p>
-  </div>
-</div>
-<div class="cards container">
-  <h2 id="title">Adoptable senior dogs near you!</h2><br>
-
-  <%= render "shared/map" %>
-
-  <% @dogs.each do |dog| %>
-    <div class="card-trip">
-      <%= image_tag dog.pictures['medium'], class: 'card-image' %>
-      <div class="card-trip-infos">
-      <p class="card-plus">+</p>
-
-        <h3><%= dog.name.gsub(/&#39;/,'`') %></h3>
-        <% if dog.breeds['secondary'].nil? || dog.breeds['secondary'] == 'Mixed Breed' %>
-          <p><%= dog.breeds['primary'] %></p>
-        <% else %>
-          <p><%= dog.breeds['primary'] %> x <%= dog.breeds['secondary'] %></p>
-        <% end %>
-
-        <p><%= dog.gender %> - <%= dog.size %></p>
-
-        <a class="card-button" href="<%= dog.url %>" target="_blank">More information</a>
-      </div>
+<div data-controller="refresh-markers">
+  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://www.avma.org/sites/default/files/2022-11/avma-website-senior-pets-hero-2880x900.jpg);">
+    <div class="container">
+      <h1>Find your furry companion</h1>
+      <p>And help a dog get their happy ending.</p>
     </div>
-  <% end %>
+  </div>
+
+  <div class='form'>
+    <%# <h2 id="title">Adoptable senior dogs near you!</h2><br> %>
+    <%= form_with url: root_path, method: :get do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control-search",
+        placeholder: "Enter your address or postal code"
+      %>
+      <%= submit_tag "Find a dog!", class: 'search-btn'%>
+    <% end %>
+
+    <%= render "shared/map" %>
+  </div>
+
+
+  <div class="cards container">
+
+    <% @dogs.each do |dog| %>
+      <div class="card-trip" id='<%= dog.id %>'>
+      <%= link_to dog.url, target: "_blank", class: 'card-link' do %>
+        <%= image_tag dog.pictures['medium'], class: 'card-image' %>
+        <div class="card-trip-infos">
+        <p class="card-plus">+</p>
+
+          <h3><%= dog.name.gsub(/&#39;/,'`') %></h3>
+          <% if dog.breeds['secondary'].nil? || dog.breeds['secondary'] == 'Mixed Breed' %>
+            <p><%= dog.breeds['primary'] %></p>
+          <% else %>
+            <p><%= dog.breeds['primary'] %> x <%= dog.breeds['secondary'] %></p>
+          <% end %>
+
+          <p><%= dog.gender %> - <%= dog.size %></p>
+
+        </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <p>Powered by Petfinder</p>
 </div>
-<p>Powered by Petfinder</p>
