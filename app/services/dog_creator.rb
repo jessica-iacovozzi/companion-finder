@@ -1,17 +1,18 @@
 require "json"
 require 'rest-client'
+require_relative 'org_creator'
 
 class DogCreator < ApplicationService
   def call
     Dog.destroy_all
-    url = 'https://api.petfinder.com/v2/animals?type=dog&age=senior&limit=100'
+    url = "https://api.petfinder.com/v2/animals?type=dog&limit=100&organization=#{$organizations.join(',')}"
     user_serialized = RestClient.get url, { Authorization: "Bearer #{ENV.fetch('PETFINDER_BEARER')}" }
     dogs_json = JSON.parse(user_serialized)
     dogs = dogs_json['animals']
 
     dogs.map do |dog|
       next if dog['photos'][0].nil?
-      next if dog['contact']['address']['address1'].nil?
+      # next if dog['contact']['address']['address1'].nil?
 
       attributes = { name: dog['name'],
                      url: dog['url'],
@@ -20,7 +21,7 @@ class DogCreator < ApplicationService
                      size: dog['size'],
                      coat: dog['coat'],
                      qualities: dog['tags'],
-                     address: "#{dog['contact']['address']['address1']}, #{dog['contact']['address']['postcode']}",
+                    #  address: "#{dog['contact']['address']['address1']}, #{dog['contact']['address']['postcode']}",
                      colors: { primary: dog['colors']['primary'], secondary: dog['colors']['secondary'] },
                      features: { spayed_neutered: dog['attributes']['spayed_neutered'], house_trained: dog['attributes']['house_trained'], declawed: dog['attributes']['declawed'], special_needs: dog['attributes']['special_needs'], shots_current: dog['attributes']['shots_current'] },
                      environments: { children: dog['environment']['children'], dogs: dog['environment']['dogs'], cats: dog['environment']['cats'] },

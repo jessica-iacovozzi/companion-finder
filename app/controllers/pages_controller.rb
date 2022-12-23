@@ -2,9 +2,8 @@ class PagesController < ApplicationController
   # skip_before_action :authenticate_user!, only: [:home]
 
   def home
-    # DogCreator.call
     if params[:query].present?
-      @dogs = Dog.search_by_address(params[:query])
+      @dogs = Dog.near(params[:query], 100)
     else
       @dogs = Dog.all
     end
