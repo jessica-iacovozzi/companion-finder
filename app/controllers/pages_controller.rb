@@ -3,20 +3,21 @@ class PagesController < ApplicationController
 
   def home
     if params[:query].present?
-      @dogs = Dog.near(params[:query], 100)
+      @orgs = Organization.near(params[:query], 100)
     else
-      @dogs = Dog.all
+      @orgs = Organization.all
     end
     markers
+    @dogs = Dog.all
   end
 
   def markers
-    @markers = @dogs.geocoded.map do |dog|
+    @markers = @orgs.geocoded.map do |org|
       {
-        id: dog.id,
-        lat: dog.latitude,
-        lng: dog.longitude,
-        info_window: render_to_string(partial: "info_window", locals: { dog: }),
+        id: org.id,
+        lat: org.latitude,
+        lng: org.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { org: }),
         image_url: helpers.asset_url("pin.png")
       }
     end

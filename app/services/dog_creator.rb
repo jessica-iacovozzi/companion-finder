@@ -12,8 +12,8 @@ class DogCreator < ApplicationService
 
     dogs.map do |dog|
       next if dog['photos'][0].nil?
-      # next if dog['contact']['address']['address1'].nil?
 
+      # next if dog['contact']['address']['address1'].nil?
       attributes = { name: dog['name'],
                      url: dog['url'],
                      breeds: { primary: dog['breeds']['primary'], secondary: dog['breeds']['secondary'], mixed: dog['breeds']['mixed'], unknown: dog['breeds']['unknown'] },
@@ -21,7 +21,7 @@ class DogCreator < ApplicationService
                      size: dog['size'],
                      coat: dog['coat'],
                      qualities: dog['tags'],
-                    #  address: "#{dog['contact']['address']['address1']}, #{dog['contact']['address']['postcode']}",
+                     # address: "#{dog['contact']['address']['address1']}, #{dog['contact']['address']['postcode']}",
                      colors: { primary: dog['colors']['primary'], secondary: dog['colors']['secondary'] },
                      features: { spayed_neutered: dog['attributes']['spayed_neutered'], house_trained: dog['attributes']['house_trained'], declawed: dog['attributes']['declawed'], special_needs: dog['attributes']['special_needs'], shots_current: dog['attributes']['shots_current'] },
                      environments: { children: dog['environment']['children'], dogs: dog['environment']['dogs'], cats: dog['environment']['cats'] },
@@ -29,6 +29,6 @@ class DogCreator < ApplicationService
                      description: dog['description'] }
       Dog.create!(attributes)
     end
-    puts "created 100 dogs"
+    puts "created dogs"
   end
 end

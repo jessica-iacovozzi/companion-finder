@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_23_030857) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_23_145134) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
   enable_extension "plpgsql"
@@ -52,6 +52,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_23_030857) do
     t.string "postcode"
     t.string "picture"
     t.string "org_id"
+    t.string "latitude"
+    t.string "longitude"
   end
 
   create_table "users", force: :cascade do |t|

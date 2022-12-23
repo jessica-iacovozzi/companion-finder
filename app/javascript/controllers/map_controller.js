@@ -5,7 +5,6 @@ export default class extends Controller {
     apiKey: String,
     markers: Array
   }
-  static targets = ["button"]
 
   mapMarkers = []
 
@@ -14,7 +13,9 @@ export default class extends Controller {
 
     this.map = new mapboxgl.Map({
     container: this.element,
-    style: "mapbox://styles/mapbox/streets-v12"
+    style: "mapbox://styles/mapbox/streets-v12",
+    center: [-73.561668, 45.508888],
+    zoom: 1
     });
     this.#addMarkersToMap(this.markersValue)
     this.#fitMapToMarkers(this.markersValue)
